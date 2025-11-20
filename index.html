@@ -1,24 +1,56 @@
 <!doctype html>
+<!--
+  Birthday Website for Zho
+  
+  A personal, mobile-first birthday experience with photos, voice memos, and heartfelt messages.
+  Built with React, TypeScript, and Tailwind CSS for optimal performance and accessibility.
+  
+  Key features:
+  - Multi-page navigation (Welcome -> Photos -> Voice -> Birthday)
+  - Responsive images with lazy loading
+  - Custom audio player controls
+  - Color theme selector
+  - Smooth CSS animations with motion preference support
+  
+  Deployment ready for GitHub Pages and Netlify.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    
+    <!-- Mobile-first viewport configuration -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>10613c99-0cc4-41a3-ba62-f7d555a7f61e</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <meta property="og:title" content="10613c99-0cc4-41a3-ba62-f7d555a7f61e" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    
+    <!-- Page metadata -->
+    <title>Happy Birthday, Zho ❤️</title>
+    <meta name="description" content="A special birthday celebration for Zho, with photos, memories, and heartfelt messages." />
+    <meta name="author" content="A gift made with love" />
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#f1a7b5" />
+    
+    <!-- Open Graph metadata for social sharing -->
+    <meta property="og:title" content="Happy Birthday, Zho ❤️" />
+    <meta property="og:description" content="A special birthday celebration with photos and memories" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
+    
+    <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- 
+      Preload critical assets (optional enhancement)
+      Uncomment and customize paths once real assets are added:
+      
+      <link rel="preload" href="/images/photo-1.jpg" as="image" type="image/jpeg" />
+      <link rel="preload" href="/audio/voice-1.mp3" as="audio" type="audio/mpeg" />
+    -->
   </head>
 
   <body>
+    <!-- React root mount point -->
     <div id="root"></div>
+    
+    <!-- Main application bundle -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
