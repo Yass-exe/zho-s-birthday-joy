@@ -2,96 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* 
+ * Birthday Website for Zho - Design System
+ * 
+ * Purpose: Central design token definitions for romantic, elegant birthday experience
+ * All colors in HSL format for consistent theming and easy manipulation
+ * Supports smooth transitions and respects user motion preferences
+ */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* ==================== SEMANTIC COLOR TOKENS ==================== */
+    /* Base colors - soft, warm palette for romantic aesthetic */
+    --background: 340 40% 97%;
+    --foreground: 340 20% 20%;
 
+    /* Card surfaces - elevated, subtle shadows */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 340 20% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Primary brand colors - soft rose/pink tones */
+    --primary: 340 75% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 340 85% 75%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Secondary accent - warm peach/coral */
+    --secondary: 25 85% 75%;
+    --secondary-foreground: 340 20% 20%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Muted/subtle elements */
+    --muted: 340 30% 95%;
+    --muted-foreground: 340 15% 50%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Interactive accent - can be dynamically changed on voice page */
+    --accent: 340 75% 65%;
+    --accent-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Border and input styling */
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 340 75% 65%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --radius: 1rem;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* ==================== GRADIENT TOKENS ==================== */
+    /* Hero gradient - soft romantic fade */
+    --gradient-hero: linear-gradient(135deg, 
+      hsl(340 75% 85%) 0%, 
+      hsl(25 80% 85%) 100%);
+    
+    /* Background ambient gradient - subtle animation base */
+    --gradient-ambient: linear-gradient(45deg,
+      hsl(340 60% 95%) 0%,
+      hsl(25 70% 95%) 50%,
+      hsl(340 60% 95%) 100%);
 
-    --radius: 0.5rem;
+    /* Glow effect for special elements */
+    --gradient-glow: radial-gradient(circle at center,
+      hsl(var(--primary-glow) / 0.3) 0%,
+      hsl(var(--primary-glow) / 0) 70%);
 
-    --sidebar-background: 0 0% 98%;
+    /* ==================== ANIMATION TOKENS ==================== */
+    /* Timing functions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Animation durations */
+    --duration-fast: 0.2s;
+    --duration-normal: 0.4s;
+    --duration-slow: 0.8s;
+    --duration-ambient: 20s;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* ==================== SPACING & TYPOGRAPHY ==================== */
+    /* Consistent spacing scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 3rem;
+    --space-xl: 4rem;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Typography scale */
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.75rem;
+    --font-size-2xl: 2.5rem;
+    --font-size-hero: 3.5rem;
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ==================== SHADOWS ==================== */
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.1);
+    --shadow-glow: 0 0 30px hsl(var(--primary-glow) / 0.4);
+    --shadow-elevated: 0 10px 40px hsl(var(--primary) / 0.15);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* Dark mode not implemented per user requirements - focus on light romantic theme */
 }
 
 @layer base {
@@ -101,5 +105,185 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling with motion preference respect */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Accessible focus styles */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+/* ==================== LAYOUT UTILITIES ==================== */
+@layer utilities {
+  /* Hero section styling */
+  .hero-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animated background container */
+  .animated-bg {
+    background: var(--gradient-ambient);
+    background-size: 200% 200%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animated-bg {
+      animation: ambient-float var(--duration-ambient) ease-in-out infinite;
+    }
+  }
+
+  /* Card elevation styles */
+  .card-elevated {
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--radius);
+    transition: var(--transition-smooth);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-elevated:hover {
+      transform: none;
+    }
+  }
+}
+
+/* ==================== ANIMATION KEYFRAMES ==================== */
+/* Performance note: Using transform and opacity for GPU acceleration */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero headline reveal animation */
+@keyframes reveal-text {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Ambient background float animation */
+@keyframes ambient-float {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Floating particles animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+  }
+}
+
+/* Subtle pulse for interactive elements */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Heart glow animation for final page */
+@keyframes heart-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px hsl(var(--primary-glow) / 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px hsl(var(--primary-glow) / 0.9));
+  }
+}
+
+/* Sparkle animation for final page */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide animations for photo gallery */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Respect reduced motion preference for all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
