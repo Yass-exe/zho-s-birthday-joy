@@ -28,6 +28,7 @@ import Photos from "./pages/Photos";
 import Voice from "./pages/Voice";
 import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
+import SpotifyPlayer from "./components/SpotifyPlayer";
 
 // React Query client - minimal configuration for this static site
 const queryClient = new QueryClient();
@@ -38,6 +39,9 @@ const App = () => (
       {/* Toast notification components - available globally */}
       <Toaster />
       <Sonner />
+      
+      {/* Persistent Spotify player - mounted above BrowserRouter to persist across routes */}
+      <SpotifyPlayer />
       
       {/* 
         Client-side routing
