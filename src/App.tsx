@@ -29,6 +29,7 @@ import Voice from "./pages/Voice";
 import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
 import SpotifyPlayer from "./components/SpotifyPlayer";
+import FallingElements from "./components/FallingElements";
 
 // React Query client - minimal configuration for this static site
 const queryClient = new QueryClient();
@@ -39,6 +40,9 @@ const App = () => (
       {/* Toast notification components - available globally */}
       <Toaster />
       <Sonner />
+      
+      {/* Ambient falling hearts and stars */}
+      <FallingElements />
       
       {/* Persistent Spotify player - mounted above BrowserRouter to persist across routes */}
       <SpotifyPlayer />

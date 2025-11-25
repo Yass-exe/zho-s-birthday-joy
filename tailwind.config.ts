@@ -46,6 +46,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'cursive'],
+      },
       keyframes: {
         "fade-in": {
           from: {
@@ -135,6 +138,19 @@ export default {
             transform: "translateX(0) scale(1)",
           },
         },
+        fall: {
+          "0%": {
+            transform: "translateY(-50px) rotate(0deg)",
+            opacity: "0.2",
+          },
+          "50%": {
+            opacity: "0.3",
+          },
+          "100%": {
+            transform: "translateY(100vh) rotate(360deg)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.8s ease-out",
@@ -146,6 +162,7 @@ export default {
         "sparkle": "sparkle 3s ease-in-out infinite",
         "slide-in-right": "slide-in-right 0.5s ease-out",
         "slide-in-left": "slide-in-left 0.5s ease-out",
+        fall: "fall linear infinite",
       },
     },
   },

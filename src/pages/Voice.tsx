@@ -1,18 +1,19 @@
 /**
- * Voice.tsx - Voice Memos Page with Color Theme Selector
+ * Voice.tsx - Voice Memos Page with Auto-Cycling Theme
  * 
- * Purpose: Display all voice memos with custom audio controls and theme customization
+ * Purpose: Display all voice memos with custom audio controls and automatic theme cycling
  * Features:
  * - List all voice memos vertically with captions
  * - Custom audio player UI (play/pause, progress bar, duration display)
- * - Color theme selector (3 preset colors) that updates --accent-color CSS variable
+ * - Auto-cycling theme colors (Lavender → Pink → Coral) every 12 seconds
+ * - Smooth fade transitions between themes
  * - Animated background with motion preference support
  * - Accessible with transcripts/summaries in expandable details
  * 
  * How to customize:
  * - Add audio files to public/audio/ directory (mp3, 128-192 kbps recommended)
  * - Add entries to voiceMemos array below with src, title, and transcript
- * - To add more theme colors, add entries to themeColors array
+ * - Adjust theme cycling interval by changing THEME_CYCLE_INTERVAL constant
  * 
  * Mobile audio restrictions:
  * - Audio playback must be user-initiated (autoplay not allowed)
@@ -51,20 +52,23 @@ const voiceMemos = [
 ];
 
 /**
- * Theme color options
- * Each color updates the --accent-color CSS variable which affects:
+ * Theme color options for auto-cycling
+ * Cycles through: Lavender → Pink → Coral
+ * Each color updates the --accent CSS variable which affects:
  * - Button backgrounds
  * - Progress bars
  * - Interactive element highlights
  * 
  * Colors in HSL format for consistency with design system
- * To add more colors: append { name, value } objects to this array
  */
 const themeColors = [
-  { name: 'Rose', value: '340 75% 65%' }, // Default romantic rose
-  { name: 'Coral', value: '25 85% 65%' },  // Warm coral/peach
   { name: 'Lavender', value: '270 60% 70%' }, // Soft purple
+  { name: 'Pink', value: '340 75% 65%' }, // Romantic rose/pink
+  { name: 'Coral', value: '25 85% 65%' },  // Warm coral/peach
 ];
+
+// Theme cycling interval in milliseconds (12 seconds for smooth experience)
+const THEME_CYCLE_INTERVAL = 12000;
 
 /**
  * Custom Audio Player Component
@@ -242,36 +246,42 @@ const AudioPlayer = ({ src, title, transcript }: AudioPlayerProps) => {
 };
 
 /**
- * Voice page main component
+ * Voice page main component with auto-cycling theme
  */
 const Voice = () => {
   /**
-   * Current theme color state
-   * Stored in sessionStorage to persist during browsing session
-   * Default: first color in themeColors array (Rose)
+   * Current theme index for auto-cycling
+   * Cycles through themeColors array automatically
    */
-  const [currentColor, setCurrentColor] = useState(() => {
-    return sessionStorage.getItem('themeColor') || themeColors[0].value;
-  });
+  const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
 
   /**
-   * Apply theme color to CSS custom property
-   * Updates --accent-color which cascades to all themed elements
-   * Persists selection in sessionStorage for session continuity
+   * Apply theme color to CSS custom property with smooth transition
+   * Updates --accent which cascades to all themed elements
    */
   useEffect(() => {
+    const currentColor = themeColors[currentThemeIndex].value;
     document.documentElement.style.setProperty('--accent', currentColor);
-    sessionStorage.setItem('themeColor', currentColor);
-  }, [currentColor]);
+    
+    // Add transition for smooth color changes
+    document.documentElement.style.transition = 'all 1.5s ease-in-out';
+    
+    return () => {
+      document.documentElement.style.transition = '';
+    };
+  }, [currentThemeIndex]);
 
   /**
-   * Change theme color handler
-   * Input: HSL color value string (e.g., "340 75% 65%")
-   * Side effects: updates CSS variable and sessionStorage
+   * Auto-cycle through themes
+   * Changes theme every THEME_CYCLE_INTERVAL milliseconds
    */
-  const handleColorChange = (color: string) => {
-    setCurrentColor(color);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentThemeIndex((prev) => (prev + 1) % themeColors.length);
+    }, THEME_CYCLE_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     // Main container with animated gradient background
@@ -279,42 +289,12 @@ const Voice = () => {
       <div className="max-w-3xl mx-auto">
         {/* Page header */}
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             What I couldn't tell you
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             Listen to these messages meant just for you
           </p>
-        </div>
-
-        {/* Color theme selector */}
-        <div className="card-elevated p-6 mb-8 animate-fade-in">
-          <h2 className="text-sm font-semibold text-foreground mb-4">
-            Choose a color theme
-          </h2>
-          <div className="flex gap-4 flex-wrap">
-            {themeColors.map((color) => (
-              <button
-                key={color.name}
-                onClick={() => handleColorChange(color.value)}
-                className={`
-                  h-12 px-6 rounded-full font-medium transition-all duration-300
-                  ${currentColor === color.value 
-                    ? 'ring-2 ring-offset-2 ring-primary scale-105' 
-                    : 'hover:scale-105'
-                  }
-                `}
-                style={{
-                  backgroundColor: `hsl(${color.value})`,
-                  color: 'white',
-                }}
-                aria-label={`Select ${color.name} theme`}
-                aria-pressed={currentColor === color.value}
-              >
-                {color.name}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Voice memos list */}
