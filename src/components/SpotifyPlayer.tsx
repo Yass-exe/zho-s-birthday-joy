@@ -24,18 +24,14 @@ const SpotifyPlayer = () => {
 
   return (
     <div 
-      className={`fixed z-50 transition-opacity duration-500 ${
+      className={`fixed transition-opacity duration-500 ${
         isSpotifyPage 
-          ? 'inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm opacity-100' 
-          : 'opacity-0 pointer-events-none -z-10'
+          ? 'inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm opacity-100 z-50' 
+          : 'bottom-0 left-0 w-[352px] h-[200px] opacity-0 pointer-events-none -z-50'
       }`}
     >
       <div 
-        className={`${
-          isSpotifyPage 
-            ? 'w-full max-w-md mx-4' 
-            : 'w-[1px] h-[1px]'
-        }`}
+        className="w-full max-w-md mx-4"
         style={{
           borderRadius: isSpotifyPage ? 'var(--radius)' : '0',
           overflow: 'hidden',
@@ -45,7 +41,7 @@ const SpotifyPlayer = () => {
         <iframe
           src="https://open.spotify.com/embed/playlist/0KpPNg7XZCb477yDW2UnQI?utm_source=generator&theme=0"
           width="100%"
-          height={isSpotifyPage ? "352" : "1"}
+          height="352"
           frameBorder="0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
