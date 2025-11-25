@@ -24,6 +24,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import ZhoSpotify from "./pages/ZhoSpotify";
 import Photos from "./pages/Photos";
 import Voice from "./pages/Voice";
 import Final from "./pages/Final";
@@ -59,10 +60,13 @@ const App = () => (
           {/* Landing page - warm welcome message */}
           <Route path="/" element={<Index />} />
           
+          {/* Dedicated Spotify playlist page */}
+          <Route path="/zho-spotify" element={<ZhoSpotify />} />
+          
           {/* Photo gallery with slider */}
           <Route path="/photos" element={<Photos />} />
           
-          {/* Voice memos with theme selector */}
+          {/* Voice memos with auto-cycling theme */}
           <Route path="/voice" element={<Voice />} />
           
           {/* Birthday message finale */}

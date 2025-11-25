@@ -100,11 +100,11 @@ const Index = () => {
           Animation: fades in after text (1s delay)
         */}
         <div className="animate-fade-in" style={{ animationDelay: '1s' }}>
-          <Link to="/photos">
+          <Link to="/zho-spotify">
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 min-w-[200px]"
-              aria-label="Continue to photos"
+              aria-label="Continue to music"
             >
               Continue
             </Button>
