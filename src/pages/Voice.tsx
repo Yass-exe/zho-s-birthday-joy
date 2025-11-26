@@ -309,9 +309,9 @@ const Voice = () => {
           ))}
         </div>
 
-        {/* Continue to final page */}
+        {/* Continue to message page */}
         <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <Link to="/final">
+          <Link to="/message">
             <Button size="lg" className="min-w-[200px]">
               Continue
             </Button>
