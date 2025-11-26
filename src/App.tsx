@@ -45,9 +45,6 @@ const App = () => (
       {/* Ambient falling hearts and stars */}
       <FallingElements />
       
-      {/* Persistent Spotify player - mounted above BrowserRouter to persist across routes */}
-      <SpotifyPlayer />
-      
       {/* 
         Client-side routing
         Note: Works perfectly for development and with proper server config:
@@ -56,6 +53,9 @@ const App = () => (
         - See README.md for deployment instructions
       */}
       <BrowserRouter>
+        {/* Persistent Spotify player - inside BrowserRouter to access useLocation, but outside Routes to persist */}
+        <SpotifyPlayer />
+        
         <Routes>
           {/* Landing page - warm welcome message */}
           <Route path="/" element={<Index />} />
