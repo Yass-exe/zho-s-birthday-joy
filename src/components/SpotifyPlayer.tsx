@@ -16,7 +16,8 @@
  * - Modify theme preference (theme=0 for light, theme=1 for dark)
  */
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const SpotifyPlayer = () => {
   const location = useLocation();
@@ -26,27 +27,40 @@ const SpotifyPlayer = () => {
     <div 
       className={`fixed transition-opacity duration-500 ${
         isSpotifyPage 
-          ? 'inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm opacity-100 z-50' 
+          ? 'inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm opacity-100 z-50 overflow-y-auto' 
           : 'bottom-0 left-0 w-[352px] h-[200px] opacity-0 pointer-events-none -z-50'
       }`}
     >
-      <div 
-        className="w-full max-w-md mx-4"
-        style={{
-          borderRadius: isSpotifyPage ? 'var(--radius)' : '0',
-          overflow: 'hidden',
-          boxShadow: isSpotifyPage ? 'var(--shadow-elevated)' : 'none',
-        }}
-      >
-        <iframe
-          src="https://open.spotify.com/embed/playlist/0KpPNg7XZCb477yDW2UnQI?utm_source=generator&theme=0"
-          width="100%"
-          height="352"
-          frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          title="Spotify Playlist for Zho"
-        />
+      <div className={`${isSpotifyPage ? 'py-12 px-4' : ''}`}>
+        <div 
+          className="w-full max-w-md mx-auto"
+          style={{
+            borderRadius: isSpotifyPage ? 'var(--radius)' : '0',
+            overflow: 'hidden',
+            boxShadow: isSpotifyPage ? 'var(--shadow-elevated)' : 'none',
+          }}
+        >
+          <iframe
+            src="https://open.spotify.com/embed/playlist/0KpPNg7XZCb477yDW2UnQI?utm_source=generator&theme=0"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Spotify Playlist for Zho"
+          />
+        </div>
+        
+        {/* Continue button - only visible on Spotify page */}
+        {isSpotifyPage && (
+          <div className="text-center mt-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <Link to="/photos">
+              <Button size="lg" className="min-w-[200px]">
+                Continue
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
