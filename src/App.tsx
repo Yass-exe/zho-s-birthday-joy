@@ -27,6 +27,7 @@ import Index from "./pages/Index";
 import ZhoSpotify from "./pages/ZhoSpotify";
 import Photos from "./pages/Photos";
 import Voice from "./pages/Voice";
+import Message from "./pages/Message";
 import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
 import SpotifyPlayer from "./components/SpotifyPlayer";
@@ -68,6 +69,9 @@ const App = () => (
           
           {/* Voice memos with auto-cycling theme */}
           <Route path="/voice" element={<Voice />} />
+          
+          {/* Personal message page */}
+          <Route path="/message" element={<Message />} />
           
           {/* Birthday message finale */}
           <Route path="/final" element={<Final />} />
