@@ -27,43 +27,19 @@ const ZhoSpotify = () => {
         </div>
 
         {/* 
-          Note: Spotify player is rendered globally in App.tsx
-          It appears prominently on this route and hides on others
+          Note: Spotify player and Continue button are rendered globally in App.tsx (SpotifyPlayer component)
+          They appear prominently on this route with the button positioned below the player
+          The player stays mounted on other routes (hidden) to persist playback
         */}
 
         {/* Instructions */}
         <div 
-          className="mb-8 text-sm text-muted-foreground animate-fade-in"
+          className="text-sm text-muted-foreground animate-fade-in"
           style={{ animationDelay: '0.4s' }}
         >
           <p className="leading-relaxed">
             Press play above, then continue browsing. The music will keep playing as you explore.
           </p>
-        </div>
-
-        {/* Continue button */}
-        <div 
-          className="animate-fade-in"
-          style={{ animationDelay: '0.6s' }}
-        >
-          <Link to="/photos">
-            <Button size="lg" className="min-w-[200px]">
-              Continue
-            </Button>
-          </Link>
-        </div>
-
-        {/* Back to home link */}
-        <div 
-          className="mt-6 animate-fade-in"
-          style={{ animationDelay: '0.8s' }}
-        >
-          <Link 
-            to="/" 
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Back to start
-          </Link>
         </div>
       </div>
     </div>
