@@ -2,18 +2,13 @@
  * SpotifyPlayer.tsx - Persistent Spotify Player with Route-Aware Display
  * 
  * Purpose: Embed Spotify playlist that persists across all routes
- * Mounted in App.tsx above BrowserRouter to maintain playback during navigation
+ * Mounted in App.tsx to maintain playback during navigation
  * 
  * Key features:
  * - Always mounted (never unmounts, so playback never stops)
- * - Visible and prominent on /zho-spotify page
+ * - Visible inline on /zho-spotify page (part of page flow)
  * - Hidden on all other pages (but still playing)
  * - Route-aware display using React Router's useLocation
- * 
- * To customize:
- * - Replace the playlist URL in the src attribute
- * - Adjust visibility styling per route
- * - Modify theme preference (theme=0 for light, theme=1 for dark)
  */
 
 import { useLocation } from 'react-router-dom';
@@ -22,21 +17,12 @@ const SpotifyPlayer = () => {
   const location = useLocation();
   const isSpotifyPage = location.pathname === '/zho-spotify';
 
-  return (
-    <div 
-      className={`fixed transition-opacity duration-500 ${
-        isSpotifyPage 
-          ? 'inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm opacity-100 z-50' 
-          : 'bottom-0 left-0 w-[352px] h-[200px] opacity-0 pointer-events-none -z-50'
-      }`}
-    >
+  // When not on Spotify page, render hidden but keep mounted for playback persistence
+  if (!isSpotifyPage) {
+    return (
       <div 
-        className="w-full max-w-md mx-4"
-        style={{
-          borderRadius: isSpotifyPage ? 'var(--radius)' : '0',
-          overflow: 'hidden',
-          boxShadow: isSpotifyPage ? 'var(--shadow-elevated)' : 'none',
-        }}
+        className="fixed bottom-0 left-0 w-[352px] h-[200px] opacity-0 pointer-events-none -z-50"
+        aria-hidden="true"
       >
         <iframe
           src="https://open.spotify.com/embed/playlist/0KpPNg7XZCb477yDW2UnQI?utm_source=generator&theme=0"
@@ -48,8 +34,12 @@ const SpotifyPlayer = () => {
           title="Spotify Playlist for Zho"
         />
       </div>
-    </div>
-  );
+    );
+  }
+
+  // On Spotify page - render nothing here, the page component handles display
+  // This allows the iframe to be positioned in the page flow
+  return null;
 };
 
 export default SpotifyPlayer;
