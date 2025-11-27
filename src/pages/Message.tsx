@@ -17,7 +17,8 @@ const Message = () => {
   // Pre-written message for the recipient
   const message = `if i was asked if i had a person to love deeply i wouldve said smth like my fam or i love everyone but in diffrent ways , the usual thing any person would say , but when i met you the awnser to that question changed entirely
 
-i'd tell everyone that i love u and u only because with u i got to experience what does it mean to have a companion , a lover , a person who actually wants you however u were , from the literal start i enjoyed every moment spent with you and i will cherrish every upcoming one because u were the nicest , loveliest , the most fun to watch even staring or hearing u talk at literally anything , no matter how unserious it was felt like a fun activity that i could never feel bored of
+i'd tell everyone that i love u and u only because with u i got to experience what does it mean to have a companion , a lover , a person who actually wants you however u were , from the literal start i enjoyed every moment spent with
+you and i will cherrish every upcoming one because u were the nicest , loveliest , the most fun to watch even staring or hearing u talk at literally anything , no matter how unserious it was felt like a fun activity that i could never feel bored of
 
 and that if it wasnt the greatest thing a man can have then id enjoy resting there for the rest of my life , having you as my eternal other part , my soulmate , my best girl i ever met , MY GIRL , and the one that i understood why god made heaven for
 
