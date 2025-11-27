@@ -10,13 +10,23 @@
  * - Auto-cycling theme support inherited from design system
  */
 
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 
 const Message = () => {
-  const [message, setMessage] = useState('');
+  // Pre-written message for the recipient
+  const message = `My dearest Zho,
+
+Happy Birthday to the most amazing person I know! 🎂
+
+Every moment with you feels like a beautiful dream I never want to wake up from. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.
+
+Thank you for being you. Thank you for all the joy, love, and happiness you bring into my life. I am so grateful to have you.
+
+Here's to celebrating you today and always!
+
+With all my love,
+Forever yours ❤️`;
 
   return (
     <div className="min-h-screen animated-bg py-12 px-4 md:px-8">
@@ -31,28 +41,34 @@ const Message = () => {
           </p>
         </div>
 
-        {/* Message display card */}
+        {/* Message display card - pixel-art styled */}
         <div 
-          className="card-elevated p-6 md:p-8 mb-8 animate-fade-in"
-          style={{ animationDelay: '0.2s' }}
+          className="card-elevated p-6 md:p-8 mb-8 animate-fade-in border-4 border-primary/30"
+          style={{ animationDelay: '0.2s', imageRendering: 'pixelated' }}
         >
-          <Textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Your message will appear here..."
-            className="min-h-[300px] md:min-h-[400px] resize-none text-base md:text-lg leading-relaxed font-pixel"
-            readOnly
-          />
+          <div className="min-h-[300px] md:min-h-[400px] text-base md:text-lg leading-relaxed whitespace-pre-wrap text-foreground">
+            {message}
+          </div>
         </div>
 
-        {/* Continue button */}
+        {/* Navigation buttons */}
         <div 
-          className="text-center animate-fade-in"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in"
           style={{ animationDelay: '0.4s' }}
         >
+          <Link to="/voice">
+            <Button 
+              variant="outline"
+              size="lg" 
+              className="min-w-[150px] border-2 border-primary/50 hover:border-primary"
+              aria-label="Go back to voice memos"
+            >
+              ← Go Back
+            </Button>
+          </Link>
           <Link to="/final">
-            <Button size="lg" className="min-w-[200px]">
-              Continue
+            <Button size="lg" className="min-w-[150px]">
+              Continue →
             </Button>
           </Link>
         </div>
