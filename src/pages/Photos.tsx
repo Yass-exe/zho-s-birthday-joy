@@ -147,27 +147,18 @@ const Photos = () => {
 
         {/* Photo viewer with navigation controls */}
         <div className="relative card-elevated p-4 md:p-8">
-          {/* Main photo display */}
-          <div className="relative aspect-[4/3] md:aspect-[16/9] overflow-hidden rounded-lg bg-muted mb-4">
+          {/* Main photo display - pixel-art frame */}
+          <div className="relative aspect-[4/3] overflow-hidden bg-muted mb-4 border-4 border-primary/30" style={{ imageRendering: 'pixelated' }}>
             <img
               key={currentIndex}
               src={currentPhoto.src}
               alt={currentPhoto.alt}
               loading="lazy"
-              className={`w-full h-full object-cover ${
+              className={`w-full h-full object-contain ${
                 animationDirection === 'right' 
                   ? 'animate-slide-in-right' 
                   : 'animate-slide-in-left'
               }`}
-              style={{
-                /**
-                 * Responsive image strategy:
-                 * - Object-fit: cover ensures image fills container while maintaining aspect ratio
-                 * - For production, implement srcset:
-                 *   srcset="/images/photo-1-400w.jpg 400w, /images/photo-1-800w.jpg 800w, /images/photo-1-1200w.jpg 1200w"
-                 *   sizes="(max-width: 768px) 100vw, 800px"
-                 */
-              }}
             />
           </div>
 
@@ -208,14 +199,24 @@ const Photos = () => {
         </div>
 
         {/* Continue button to next page */}
-        <div className="text-center mt-8">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+          <Link to="/zho-spotify">
+            <Button 
+              variant="outline"
+              size="lg" 
+              className="min-w-[150px] border-2 border-primary/50 hover:border-primary"
+              aria-label="Go back to Spotify page"
+            >
+              ← Go Back
+            </Button>
+          </Link>
           <Link to="/voice">
             <Button 
               size="lg" 
-              className="min-w-[200px]"
+              className="min-w-[150px]"
               aria-label="Continue to voice messages"
             >
-              Continue
+              Continue →
             </Button>
           </Link>
         </div>

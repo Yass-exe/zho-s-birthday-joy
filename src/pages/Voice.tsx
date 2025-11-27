@@ -340,11 +340,21 @@ const Voice = () => {
           ))}
         </div>
 
-        {/* Continue to message page */}
-        <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        {/* Navigation buttons */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <Link to="/photos">
+            <Button 
+              variant="outline"
+              size="lg" 
+              className="min-w-[150px] border-2 border-primary/50 hover:border-primary"
+              aria-label="Go back to photos"
+            >
+              ← Go Back
+            </Button>
+          </Link>
           <Link to="/message">
-            <Button size="lg" className="min-w-[200px]">
-              Continue
+            <Button size="lg" className="min-w-[150px]">
+              Continue →
             </Button>
           </Link>
         </div>

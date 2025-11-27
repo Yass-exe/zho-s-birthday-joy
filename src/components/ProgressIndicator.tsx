@@ -94,7 +94,7 @@ const ProgressIndicator = () => {
       aria-valuenow={currentPageIndex + 1}
       aria-valuemin={1}
       aria-valuemax={totalPages}
-      aria-label={`Progress: ${currentPageIndex + 1} of ${totalPages}${isFinalPage ? ' — final message: muah my love' : ''}`}
+      aria-label={`Progress: ${currentPageIndex + 1} of ${totalPages}${isFinalPage ? ' — I love u' : ''}`}
     >
       {/* Mobile version (48px) */}
       <div 
@@ -178,7 +178,7 @@ const ProgressIndicator = () => {
               animation: isFinalPage && !prefersReducedMotion ? 'pulse-gentle 2s ease-in-out infinite' : 'none',
             }}
           >
-            muah<br/>my<br/>love
+            I love<br/>u
           </span>
         </div>
       </div>
@@ -265,7 +265,7 @@ const ProgressIndicator = () => {
               animation: isFinalPage && !prefersReducedMotion ? 'pulse-gentle 2s ease-in-out infinite' : 'none',
             }}
           >
-            muah<br/>my<br/>love
+            I love<br/>u
           </span>
         </div>
 
@@ -291,7 +291,7 @@ const ProgressIndicator = () => {
       {/* Screen reader text */}
       <span className="sr-only">
         Page {currentPageIndex + 1} of {totalPages}
-        {isFinalPage && ' — muah my love'}
+        {isFinalPage && ' — I love u'}
       </span>
     </div>
   );
