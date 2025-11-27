@@ -3,7 +3,8 @@
  * 
  * Purpose: Visual progress tracker for multi-page birthday site
  * Features:
- * - Pixel-art circular progress bar
+ * - Compact pixel-art circular progress bar (48-56px)
+ * - Positioned in top-right corner, never overlapping content
  * - Inner message "muah my love" that emphasizes on final page
  * - Smooth pixel-style animations
  * - Accessibility support with aria attributes
@@ -73,81 +74,84 @@ const ProgressIndicator = () => {
   // Don't show on invalid pages
   if (!isValidPage) return null;
 
+  // Responsive sizes: 48px on mobile, 56px on desktop
+  const size = { mobile: 48, desktop: 56 };
+  const radius = { mobile: 18, desktop: 22 };
+  const strokeWidth = { mobile: 4, desktop: 5 };
+  
   // Calculate visual properties
-  const circumference = 2 * Math.PI * 28; // radius = 28
-  const strokeDashoffset = circumference * (1 - animatedProgress);
-  const messageScale = isFinalPage ? 1.15 : 0.85 + animatedProgress * 0.15;
-  const messageOpacity = 0.6 + animatedProgress * 0.4;
+  const circumferenceMobile = 2 * Math.PI * radius.mobile;
+  const circumferenceDesktop = 2 * Math.PI * radius.desktop;
+  const strokeDashoffsetMobile = circumferenceMobile * (1 - animatedProgress);
+  const strokeDashoffsetDesktop = circumferenceDesktop * (1 - animatedProgress);
+  const messageScale = isFinalPage ? 1.1 : 0.9 + animatedProgress * 0.1;
+  const messageOpacity = 0.7 + animatedProgress * 0.3;
 
   return (
     <div 
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-40 md:top-6"
+      className="fixed top-3 right-3 z-30 md:top-4 md:right-4"
       role="progressbar"
       aria-valuenow={currentPageIndex + 1}
       aria-valuemin={1}
       aria-valuemax={totalPages}
       aria-label={`Progress: ${currentPageIndex + 1} of ${totalPages}${isFinalPage ? ' — final message: muah my love' : ''}`}
     >
+      {/* Mobile version (48px) */}
       <div 
-        className="relative"
+        className="relative md:hidden"
         style={{
           imageRendering: 'pixelated',
-          width: '72px',
-          height: '72px',
+          width: `${size.mobile}px`,
+          height: `${size.mobile}px`,
         }}
       >
-        {/* Pixel-art outer ring */}
         <svg 
-          width="72" 
-          height="72" 
-          viewBox="0 0 72 72"
+          width={size.mobile} 
+          height={size.mobile} 
+          viewBox={`0 0 ${size.mobile} ${size.mobile}`}
           className="transform -rotate-90"
         >
-          {/* Background track - pixelated appearance */}
+          {/* Background track */}
           <circle
-            cx="36"
-            cy="36"
-            r="28"
+            cx={size.mobile / 2}
+            cy={size.mobile / 2}
+            r={radius.mobile}
             fill="none"
             stroke="hsl(var(--muted))"
-            strokeWidth="6"
+            strokeWidth={strokeWidth.mobile}
             strokeLinecap="square"
-            style={{ 
-              strokeDasharray: '4 2',
-              opacity: 0.5 
-            }}
+            style={{ strokeDasharray: '3 2', opacity: 0.4 }}
           />
           
           {/* Progress fill */}
           <circle
-            cx="36"
-            cy="36"
-            r="28"
+            cx={size.mobile / 2}
+            cy={size.mobile / 2}
+            r={radius.mobile}
             fill="none"
             stroke="hsl(var(--primary))"
-            strokeWidth="6"
+            strokeWidth={strokeWidth.mobile}
             strokeLinecap="square"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            className="transition-colors duration-300"
+            strokeDasharray={circumferenceMobile}
+            strokeDashoffset={strokeDashoffsetMobile}
             style={{
-              filter: isFinalPage ? 'drop-shadow(0 0 4px hsl(var(--primary)))' : 'none',
+              filter: isFinalPage ? 'drop-shadow(0 0 3px hsl(var(--primary)))' : 'none',
             }}
           />
           
-          {/* Pixel accent dots at progress points */}
+          {/* Progress point markers */}
           {PAGE_ORDER.map((_, i) => {
             const angle = ((i + 1) / totalPages) * 2 * Math.PI - Math.PI / 2;
-            const x = 36 + 28 * Math.cos(angle);
-            const y = 36 + 28 * Math.sin(angle);
+            const x = size.mobile / 2 + radius.mobile * Math.cos(angle);
+            const y = size.mobile / 2 + radius.mobile * Math.sin(angle);
             const isPassed = (i + 1) / totalPages <= animatedProgress;
             return (
               <rect
                 key={i}
-                x={x - 2}
-                y={y - 2}
-                width="4"
-                height="4"
+                x={x - 1.5}
+                y={y - 1.5}
+                width="3"
+                height="3"
                 fill={isPassed ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'}
                 opacity={isPassed ? 1 : 0.3}
               />
@@ -155,7 +159,7 @@ const ProgressIndicator = () => {
           })}
         </svg>
 
-        {/* Inner message */}
+        {/* Inner message - mobile */}
         <div 
           className="absolute inset-0 flex items-center justify-center"
           style={{
@@ -165,12 +169,99 @@ const ProgressIndicator = () => {
           }}
         >
           <span 
-            className={`text-[8px] font-bold text-center leading-tight select-none ${
+            className={`text-[5px] font-bold text-center leading-tight select-none ${
               isFinalPage ? 'text-primary' : 'text-foreground'
             }`}
             style={{
               fontFamily: '"Press Start 2P", "Courier New", monospace',
-              textShadow: isFinalPage ? '0 0 8px hsl(var(--primary))' : 'none',
+              textShadow: isFinalPage ? '0 0 4px hsl(var(--primary))' : 'none',
+              animation: isFinalPage && !prefersReducedMotion ? 'pulse-gentle 2s ease-in-out infinite' : 'none',
+            }}
+          >
+            muah<br/>my<br/>love
+          </span>
+        </div>
+      </div>
+
+      {/* Desktop version (56px) */}
+      <div 
+        className="relative hidden md:block"
+        style={{
+          imageRendering: 'pixelated',
+          width: `${size.desktop}px`,
+          height: `${size.desktop}px`,
+        }}
+      >
+        <svg 
+          width={size.desktop} 
+          height={size.desktop} 
+          viewBox={`0 0 ${size.desktop} ${size.desktop}`}
+          className="transform -rotate-90"
+        >
+          {/* Background track */}
+          <circle
+            cx={size.desktop / 2}
+            cy={size.desktop / 2}
+            r={radius.desktop}
+            fill="none"
+            stroke="hsl(var(--muted))"
+            strokeWidth={strokeWidth.desktop}
+            strokeLinecap="square"
+            style={{ strokeDasharray: '3 2', opacity: 0.4 }}
+          />
+          
+          {/* Progress fill */}
+          <circle
+            cx={size.desktop / 2}
+            cy={size.desktop / 2}
+            r={radius.desktop}
+            fill="none"
+            stroke="hsl(var(--primary))"
+            strokeWidth={strokeWidth.desktop}
+            strokeLinecap="square"
+            strokeDasharray={circumferenceDesktop}
+            strokeDashoffset={strokeDashoffsetDesktop}
+            style={{
+              filter: isFinalPage ? 'drop-shadow(0 0 4px hsl(var(--primary)))' : 'none',
+            }}
+          />
+          
+          {/* Progress point markers */}
+          {PAGE_ORDER.map((_, i) => {
+            const angle = ((i + 1) / totalPages) * 2 * Math.PI - Math.PI / 2;
+            const x = size.desktop / 2 + radius.desktop * Math.cos(angle);
+            const y = size.desktop / 2 + radius.desktop * Math.sin(angle);
+            const isPassed = (i + 1) / totalPages <= animatedProgress;
+            return (
+              <rect
+                key={i}
+                x={x - 1.5}
+                y={y - 1.5}
+                width="3"
+                height="3"
+                fill={isPassed ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'}
+                opacity={isPassed ? 1 : 0.3}
+              />
+            );
+          })}
+        </svg>
+
+        {/* Inner message - desktop */}
+        <div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            transform: `scale(${messageScale})`,
+            opacity: messageOpacity,
+            transition: prefersReducedMotion ? 'none' : 'transform 0.4s ease-out, opacity 0.4s ease-out',
+          }}
+        >
+          <span 
+            className={`text-[6px] font-bold text-center leading-tight select-none ${
+              isFinalPage ? 'text-primary' : 'text-foreground'
+            }`}
+            style={{
+              fontFamily: '"Press Start 2P", "Courier New", monospace',
+              textShadow: isFinalPage ? '0 0 6px hsl(var(--primary))' : 'none',
               animation: isFinalPage && !prefersReducedMotion ? 'pulse-gentle 2s ease-in-out infinite' : 'none',
             }}
           >
@@ -181,14 +272,14 @@ const ProgressIndicator = () => {
         {/* Sparkle effect on final page */}
         {showSparkle && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(4)].map((_, i) => (
+            {[...Array(3)].map((_, i) => (
               <div
                 key={i}
                 className="absolute w-1 h-1 bg-primary"
                 style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${15 + (i % 2) * 55}%`,
-                  animation: `sparkle-pixel 0.6s ease-out ${i * 0.1}s forwards`,
+                  left: `${15 + i * 25}%`,
+                  top: `${10 + (i % 2) * 60}%`,
+                  animation: `sparkle-pixel 0.6s ease-out ${i * 0.15}s forwards`,
                   imageRendering: 'pixelated',
                 }}
               />
