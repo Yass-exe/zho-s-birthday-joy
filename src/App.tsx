@@ -32,6 +32,7 @@ import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
 import SpotifyPlayer from "./components/SpotifyPlayer";
 import FallingElements from "./components/FallingElements";
+import ProgressIndicator from "./components/ProgressIndicator";
 
 // React Query client - minimal configuration for this static site
 const queryClient = new QueryClient();
@@ -56,6 +57,9 @@ const App = () => (
       <BrowserRouter>
         {/* Persistent Spotify player - inside BrowserRouter to access useLocation, but outside Routes to persist */}
         <SpotifyPlayer />
+        
+        {/* Pixel-art progress indicator */}
+        <ProgressIndicator />
         
         <Routes>
           {/* Landing page - warm welcome message */}
