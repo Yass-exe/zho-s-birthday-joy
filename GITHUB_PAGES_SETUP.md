@@ -1,11 +1,6 @@
 # GitHub Pages Setup Instructions
 
-## Status
-- ✅ Code pushed to GitHub
-- ✅ GitHub Actions workflow configured
-- ⏳ Waiting for manual GitHub Pages configuration
-
-## Critical Steps to Complete on GitHub
+## Quick Setup Steps
 
 ### 1. Go to Repository Settings
 Visit: https://github.com/Yass-exe/zho-s-birthday-joy/settings
@@ -14,28 +9,35 @@ Visit: https://github.com/Yass-exe/zho-s-birthday-joy/settings
 - Left sidebar → **Pages**
 
 ### 3. Configure GitHub Pages Source
-- **Source**: Select "Deploy from a branch"
-- **Branch**: Select `gh-pages`
-- **Folder**: Select `/ (root)`
-- Click **Save**
+- **Source**: Select **"GitHub Actions"** (NOT "Deploy from a branch")
+- This tells GitHub to use our workflow for deployment
 
-### 4. Wait for Deployment
-- GitHub Actions will automatically trigger
-- Wait 2-3 minutes for the workflow to complete
-- You'll see a green checkmark when deployment is successful
+### 4. Push Changes to Trigger Deployment
+After changing the source to "GitHub Actions":
+1. Make any small change or push to main branch
+2. Go to **Actions** tab in your repository
+3. You should see "Deploy to GitHub Pages" workflow running
+4. Wait for it to complete (green checkmark)
 
 ### 5. Access Your Site
 Your site will be available at:
 ```
-https://Yass-exe.github.io/zho-s-birthday-joy/
+https://yass-exe.github.io/zho-s-birthday-joy/
 ```
 
-## What the Workflow Does
-1. Listens for pushes to `main` branch
-2. Installs dependencies using npm
-3. Builds your Vite + React project
-4. Deploys the `/dist` folder to `gh-pages` branch
-5. GitHub Pages automatically serves the `gh-pages` branch
+## Troubleshooting
+
+### Site is blank?
+1. **Check Pages source**: Must be set to "GitHub Actions", not "Deploy from a branch"
+2. **Check Actions tab**: Look for any failed workflows
+3. **Clear cache**: Hard refresh with Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+4. **Wait**: First deployment can take 2-5 minutes
+
+### Workflow failed?
+1. Go to Actions tab
+2. Click on the failed workflow
+3. Check the error logs
+4. Common issues: npm install failures, build errors
 
 ## Tech Stack
 - **Framework**: React + TypeScript
@@ -44,13 +46,6 @@ https://Yass-exe.github.io/zho-s-birthday-joy/
 - **Routing**: HashRouter (for GitHub Pages compatibility)
 - **Base Path**: `/zho-s-birthday-joy/`
 
-## Troubleshooting
-If the site is still blank after following these steps:
-1. Check GitHub Actions tab in your repository for any build errors
-2. Ensure `gh-pages` branch exists (it should be created automatically)
-3. Verify Pages settings point to `gh-pages` branch
-4. Clear browser cache and do a hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
-
 ## Features Included
 - ✨ Romantic gradient animations
 - 📸 Photo gallery navigation
@@ -58,3 +53,4 @@ If the site is still blank after following these steps:
 - 🎤 Voice memo player
 - 📱 Fully responsive design
 - ♿ Accessibility support
+- 🎮 Pixel-art progress indicator
