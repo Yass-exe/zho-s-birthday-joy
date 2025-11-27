@@ -294,6 +294,34 @@
   }
 }
 
+/* Gentle pulse for progress indicator message */
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Pixel sparkle effect */
+@keyframes sparkle-pixel {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
 /* Respect reduced motion preference for all animations */
 @media (prefers-reduced-motion: reduce) {
   *,
