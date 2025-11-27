@@ -28,40 +28,46 @@ import { Button } from '@/components/ui/button';
  * 2. Add entry to this array with src, alt, and caption
  * 3. Update progress indicator denominator automatically
  */
+// Helper to get the correct asset path
+const getAssetPath = (path: string) => {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${path}`.replace('//', '/');
+};
+
 const photos = [
   {
-    src: '/images/photo-1.jpg',
-    alt: 'Placeholder for first cherished memory with Zho - replace with meaningful description of the actual photo',
+    src: getAssetPath('images/photo1.jpg'),
+    alt: 'First cherished memory with Zho',
     caption: 'A zho where she looked beeautiful',
   },
   {
-    src: '/images/photo-2.jpg',
-    alt: 'Placeholder for second special moment - describe what makes this photo meaningful',
+    src: getAssetPath('images/photo2.jpg'),
+    alt: 'Second special moment',
     caption: 'zho astonishing eyes',
   },
   {
-    src: '/images/photo-3.jpg',
-    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    src: getAssetPath('images/photo3.jpg'),
+    alt: 'Third unforgettable memory',
     caption: 'zahia in here dom era (love it)',
   },
   {
-    src: '/images/photo-4.jpg',
-    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    src: getAssetPath('images/photo4.jpg'),
+    alt: 'Fourth special moment',
     caption: 'zahia being zahia(too lovely)',
   },
   {
-    src: '/images/photo-5.jpg',
-    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    src: getAssetPath('images/photo5.jpg'),
+    alt: 'Fifth cherished memory',
     caption: 'swaggy zho (my queen)',
   },
   {
-    src: '/images/photo-6.jpg',
-    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    src: getAssetPath('images/photo6.jpg'),
+    alt: 'Sixth unforgettable memory',
     caption: 'zahia being cute (as always muahhh<3)',
   },
   {
-    src: '/images/photo-7.jpg',
-    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    src: getAssetPath('images/photo7.jpg'),
+    alt: 'Our lovely moments together',
     caption: 'our lovely moments (i found it while searching for a photo of us tgthr)',
   },
 ];

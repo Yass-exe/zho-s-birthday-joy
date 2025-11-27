@@ -33,46 +33,52 @@ import { Button } from '@/components/ui/button';
  * 2. Add entry here with src (path), title (caption), and transcript (accessibility)
  * 3. Recommended audio specs: mp3 format, 128-192 kbps, mono or stereo
  */
+// Helper to get the correct asset path
+const getAssetPath = (path: string) => {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${path}`.replace('//', '/');
+};
+
 const voiceMemos = [
   {
-    src: '/audio/voice-1.mp3',
+    src: getAssetPath('audio/audio-1.mp3'),
     title: 'The first thing I wanted to say',
-    transcript: 'Placeholder transcript for first voice memo. Replace with actual transcript or summary of the audio content for accessibility.',
+    transcript: 'Voice memo 1',
   },
   {
-    src: '/audio/voice-2.mp3',
+    src: getAssetPath('audio/audio-2.mp3'),
     title: 'What I should have told you sooner',
-    transcript: 'Placeholder transcript for second voice memo. Provide text alternative for users who cannot or prefer not to listen to audio.',
+    transcript: 'Voice memo 2',
   },
   {
-    src: '/audio/voice-3.mp3',
+    src: getAssetPath('audio/audio-3.mp3'),
     title: 'The words from my heart',
-    transcript: 'Placeholder transcript for third voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    transcript: 'Voice memo 3',
   },
   {
-    src: '/audio/voice-4.mp3',
-    title: 'The words from my heart',
-    transcript: 'Placeholder transcript for fourth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    src: getAssetPath('audio/audio-4.mp3'),
+    title: 'Something special',
+    transcript: 'Voice memo 4',
   },
   {
-    src: '/audio/voice-5.mp3',
-    title: 'The words from my heart',
-    transcript: 'Placeholder transcript for fifth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    src: getAssetPath('audio/audio-5.mp3'),
+    title: 'Just for you',
+    transcript: 'Voice memo 5',
   },
   {
-    src: '/audio/voice-6.mp3',
-    title: 'The words from my heart',
-    transcript: 'Placeholder transcript for sixth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    src: getAssetPath('audio/audio-6.mp3'),
+    title: 'With all my love',
+    transcript: 'Voice memo 6',
   },
   {
-    src: '/audio/voice-7.mp3',
-    title: 'The words from my heart',
-    transcript: 'Placeholder transcript for seventh voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    src: getAssetPath('audio/rec5z.mp3'),
+    title: 'A special recording',
+    transcript: 'Special voice memo',
   },
   {
-    src: '/audio/voice-8.mp3',
-    title: 'The words from my heart',
-    transcript: 'Placeholder transcript for eighth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+    src: getAssetPath('audio/recnz.mp3'),
+    title: 'One more thing',
+    transcript: 'Final voice memo',
   },
 ];
 
