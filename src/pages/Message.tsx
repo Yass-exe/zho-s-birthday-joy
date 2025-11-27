@@ -15,18 +15,13 @@ import { Button } from '@/components/ui/button';
 
 const Message = () => {
   // Pre-written message for the recipient
-  const message = `My dearest Zho,
+  const message = `if i was asked if i had a person to love deeply i wouldve said smth like my fam or i love everyone but in diffrent ways , the usual thing any person would say , but when i met you the awnser to that question changed entirely
 
-Happy Birthday to the most amazing person I know! 🎂
+i'd tell everyone that i love u and u only because with u i got to experience what does it mean to have a companion , a lover , a person who actually wants you however u were , from the literal start i enjoyed every moment spent with you and i will cherrish every upcoming one because u were the nicest , loveliest , the most fun to watch even staring or hearing u talk at literally anything , no matter how unserious it was felt like a fun activity that i could never feel bored of
 
-Every moment with you feels like a beautiful dream I never want to wake up from. Your smile lights up my world, your laugh is my favorite sound, and your presence makes everything better.
+and that if it wasnt the greatest thing a man can have then id enjoy resting there for the rest of my life , having you as my eternal other part , my soulmate , my best girl i ever met , MY GIRL , and the one that i understood why god made heaven for
 
-Thank you for being you. Thank you for all the joy, love, and happiness you bring into my life. I am so grateful to have you.
-
-Here's to celebrating you today and always!
-
-With all my love,
-Forever yours ❤️`;
+the one i got to understand why we would look for the ones we once loved there , zahia , happy birthday with all my feelings ❤️`;
 
   return (
     <div className="min-h-screen animated-bg py-12 px-4 md:px-8">
@@ -34,19 +29,19 @@ Forever yours ❤️`;
         {/* Page header */}
         <div className="text-center mb-8 animate-fade-in">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            A Message for You
+            Message for You
           </h1>
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             Words from the heart, written just for you
           </p>
         </div>
 
-        {/* Message display card - pixel-art styled */}
+        {/* Message display card - pixel-art styled, scrollable */}
         <div 
           className="card-elevated p-6 md:p-8 mb-8 animate-fade-in border-4 border-primary/30"
           style={{ animationDelay: '0.2s', imageRendering: 'pixelated' }}
         >
-          <div className="min-h-[300px] md:min-h-[400px] text-base md:text-lg leading-relaxed whitespace-pre-wrap text-foreground">
+          <div className="max-h-[400px] md:max-h-[500px] overflow-y-auto text-base md:text-lg leading-relaxed whitespace-pre-wrap text-foreground scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-transparent pr-2">
             {message}
           </div>
         </div>
