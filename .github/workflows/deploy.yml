@@ -16,9 +16,12 @@ jobs:
         with:
           node-version: '18'
 
-      # 3. Install dependencies and build the project
-      - run: npm ci          # Use npm ci for clean installation in CI/CD
-      - run: npm run build   # This runs the build script, creating the ./dist folder
+      # 3. Set up Bun package manager
+      - uses: oven-sh/setup-bun@v1
+
+      # 4. Install dependencies and build the project
+      - run: bun install       # Use bun install for dependencies
+      - run: bun run build     # This runs the build script, creating the ./dist folder
 
       # 4. Deploy the contents of the build folder to the gh-pages branch
       - uses: peaceiris/actions-gh-pages@v3
