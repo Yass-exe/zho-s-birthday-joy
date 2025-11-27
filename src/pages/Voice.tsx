@@ -49,6 +49,31 @@ const voiceMemos = [
     title: 'The words from my heart',
     transcript: 'Placeholder transcript for third voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
   },
+  {
+    src: '/audio/voice-4.mp3',
+    title: 'The words from my heart',
+    transcript: 'Placeholder transcript for fourth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+  },
+  {
+    src: '/audio/voice-5.mp3',
+    title: 'The words from my heart',
+    transcript: 'Placeholder transcript for fifth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+  },
+  {
+    src: '/audio/voice-6.mp3',
+    title: 'The words from my heart',
+    transcript: 'Placeholder transcript for sixth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+  },
+  {
+    src: '/audio/voice-7.mp3',
+    title: 'The words from my heart',
+    transcript: 'Placeholder transcript for seventh voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+  },
+  {
+    src: '/audio/voice-8.mp3',
+    title: 'The words from my heart',
+    transcript: 'Placeholder transcript for eighth voice memo. Ensures content is accessible to all users regardless of their ability to hear audio.',
+  },
 ];
 
 /**

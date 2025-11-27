@@ -32,17 +32,37 @@ const photos = [
   {
     src: '/images/photo-1.jpg',
     alt: 'Placeholder for first cherished memory with Zho - replace with meaningful description of the actual photo',
-    caption: 'A beautiful moment',
+    caption: 'A zho where she looked beeautiful',
   },
   {
     src: '/images/photo-2.jpg',
     alt: 'Placeholder for second special moment - describe what makes this photo meaningful',
-    caption: 'Another precious memory',
+    caption: 'zho astonishing eyes',
   },
   {
     src: '/images/photo-3.jpg',
     alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
-    caption: 'Forever remembered',
+    caption: 'zahia in here dom era (love it)',
+  },
+  {
+    src: '/images/photo-4.jpg',
+    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    caption: 'zahia being zahia(too lovely)',
+  },
+  {
+    src: '/images/photo-5.jpg',
+    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    caption: 'swaggy zho (my queen)',
+  },
+  {
+    src: '/images/photo-6.jpg',
+    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    caption: 'zahia being cute (as always muahhh<3)',
+  },
+  {
+    src: '/images/photo-7.jpg',
+    alt: 'Placeholder for third unforgettable memory - capture the emotion or context of the photo',
+    caption: 'our lovely moments (i found it while searching for a photo of us tgthr)',
   },
 ];
 
